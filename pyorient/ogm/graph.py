@@ -529,7 +529,7 @@ class Graph(object):
             self.drop_class(cls, ignore_instances=True)
 
     def create_vertex(self, vertex_cls, **kwargs):
-        result = self.client.command(self.create_vertex_command(vertex_cls, **kwargs))[0]
+        result = self.client.command(to_unicode(self.create_vertex_command(vertex_cls, **kwargs)))[0]
 
         props = result.oRecordData
         return vertex_cls.from_graph(self, result._rid, self.props_from_db[vertex_cls](props))
